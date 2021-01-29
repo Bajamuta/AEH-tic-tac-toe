@@ -68,20 +68,21 @@
 (defn graj [tab]
   (println "Podaj numer pola:")
   (let [x (runda (index (do (flush) (read-line))) tab)]
-    (println x)
-    ;;(stan x)
+    (stan x)
     x)
   )
 
 (defn start
   "Rozpocznij grę"
-  [x]
+  []
   ;;powitaj użytkownika
   ;;pokaż mu stan gry
   ;;poproś użytkownika o numer pola
-  ;;nadpisz to pole znakiem "O"
+  ;;wylosuj pole komputera
   ;;pokaż użytkownikowi nowy stan
+  ;;powtórz aż wszystkie pola zapełnione
   (println "Witamy w grze Kółko Krzyżyk!")
   (stan tablica)
   (graj (graj (graj (graj (graj tablica)))))
+  (println "Koniec gry!")
   )
