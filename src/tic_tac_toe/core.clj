@@ -7,11 +7,14 @@
 (defn stan
   "Wypisz stan gry"
   [tab]
+  (println " ")
   (println (nth tab 0) "|" (nth tab 1) "|" (nth tab 2))
   (println "---------")
   (println (nth tab 3) "|" (nth tab 4) "|" (nth tab 5))
   (println "---------")
-  (println (nth tab 6) "|" (nth tab 7) "|" (nth tab 8)))
+  (println (nth tab 6) "|" (nth tab 7) "|" (nth tab 8))
+  (println " ")
+  )
 
 (defn wolne
   "Sprawdź które pola są wolne; a to numer pola które wybrał użytkownik"
@@ -31,7 +34,7 @@
 )
 
 (defn komputer [tab x]
-  (println "Komputer zagrał pole: " (+ x 1))
+  (println "Komputer zagrał pole: " (+ (nth tab x) 1))
   (nth tab x))
 
 (wolne tablica 2)
@@ -71,6 +74,8 @@
   ;;poproś użytkownika o numer pola
   ;;nadpisz to pole znakiem "O"
   ;;pokaż użytkownikowi nowy stan
+  (println "Witamy w grze Kółko Krzyżyk!")
+  (stan tablica)
   (println "Podaj numer pola:")
   (stan (runda (index (do (flush) (read-line)))))
   )
