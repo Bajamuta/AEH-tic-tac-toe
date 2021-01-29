@@ -1,10 +1,10 @@
 # tic-tac-toe
 
-A Clojure library designed to ... well, that part is up to you.
+Projekt zaliczeniowy na przedmiot "Programowanie funcyjne", informatyka zaoczna III rok Akademia Ekonomiczno-Humanistyczna w Warszawie.
 
-## Usage
+## Authors
 
-FIXME
+Joanna Prajzendanc i Adrian Styś
 
 ## License
 
