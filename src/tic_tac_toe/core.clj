@@ -3,6 +3,7 @@
 (def tablica [1 2 3 4 5 6 7 8 9])
 (def tab-gra [1 2 3 4 5 6 7 8 9])
 (def tab2 [0 0 3 0 0 0 0 0 0])
+(def tab3 ["O" "O" "O" 4 "X" 6 "X" "X" 9])
 
 (defn stan
   "Wypisz stan gry"
@@ -65,11 +66,32 @@
     )
   )
 
+(defn sprawdz
+  "Sprawdź czy ktoś już wygrał"
+  [tab]
+  (filter true? (list (= (nth tab 0) (nth tab 1) (nth tab 2))
+                (= (nth tab 0) (nth tab 4) (nth tab 8))
+                (= (nth tab 0) (nth tab 3) (nth tab 6))
+                (= (nth tab 1) (nth tab 4) (nth tab 7))
+                (= (nth tab 3) (nth tab 5) (nth tab 8))
+                (= (nth tab 3) (nth tab 4) (nth tab 5))
+                (= (nth tab 6) (nth tab 7) (nth tab 8))
+                (= (nth tab 2) (nth tab 4) (nth tab 6))))
+  )
+
 (defn graj [tab]
-  (println "Podaj numer pola:")
-  (let [x (runda (index (do (flush) (read-line))) tab)]
-    (stan x)
-    x)
+  (if (not (nil? tab))
+    (do
+      (println "Podaj numer pola:")
+      (let [x (runda (index (do (flush) (read-line))) tab)]
+        (stan x)
+        (if (first (sprawdz x))
+          (do (println "Wygrana!") nil)
+          (do (println "Dalej") x))
+        ;;x
+        )
+      )
+    )
   )
 
 (defn start
