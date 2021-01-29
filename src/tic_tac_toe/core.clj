@@ -2,7 +2,7 @@
 
 (def tablica [1 2 3 4 5 6 7 8 9])
 (def tab-gra [1 2 3 4 5 6 7 8 9])
-(def tab2 [1 2 3 0 0 0 0 0 9])
+(def tab2 [0 0 3 0 0 0 0 0 0])
 
 (defn stan
   "Wypisz stan gry"
@@ -37,10 +37,6 @@
   (println "Komputer zagrał pole: " (+ (nth tab x) 1))
   (nth tab x))
 
-(wolne tablica 2)
-(rand-int (count (wolne tablica 2)))
-(nth (wolne tablica 2) 4)
-
 (defn nadpisz
   "Zaktualizuj tablicę gry, x to pozycja gracza, y to pozycja komputera"
   [x y tab]
@@ -62,8 +58,19 @@
   (- (Long/parseLong a) 1)
   )
 
-(defn runda [a]
-  (nadpisz a (komputer (wolne tablica a) (losuj (wolne tablica a))) tablica)
+(defn runda [a tab]
+  (if (> (count (wolne tab a)) 0)
+    (nadpisz a (komputer (wolne tab a) (losuj (wolne tab a))) tab)
+    (nadpisz a nil tab)
+    )
+  )
+
+(defn graj [tab]
+  (println "Podaj numer pola:")
+  (let [x (runda (index (do (flush) (read-line))) tab)]
+    (println x)
+    ;;(stan x)
+    x)
   )
 
 (defn start
@@ -76,6 +83,5 @@
   ;;pokaż użytkownikowi nowy stan
   (println "Witamy w grze Kółko Krzyżyk!")
   (stan tablica)
-  (println "Podaj numer pola:")
-  (stan (runda (index (do (flush) (read-line)))))
+  (graj (graj (graj (graj (graj tablica)))))
   )
